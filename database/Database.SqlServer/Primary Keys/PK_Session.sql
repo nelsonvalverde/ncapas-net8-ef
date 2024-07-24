@@ -1,0 +1,3 @@
+﻿ALTER TABLE [aud].[Session]
+	ADD CONSTRAINT [PK_Id]
+	PRIMARY KEY (Id)

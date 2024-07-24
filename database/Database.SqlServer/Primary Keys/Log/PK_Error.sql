@@ -1,0 +1,3 @@
+﻿ALTER TABLE [log].[Error]
+	ADD CONSTRAINT [PK_Error]
+	PRIMARY KEY (Id DESC)

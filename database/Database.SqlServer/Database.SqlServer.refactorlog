@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7bf3b3e5-5081-4687-ab56-c2cb4955b543" ChangeDateTime="07/08/2024 05:34:17">
+    <Property Name="ElementName" Value="[aud].[Session].[Expire]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[aud].[Session]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Expires" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9866f836-ffc6-42bd-98eb-3a718e5d89c2" ChangeDateTime="07/11/2024 04:26:13">
+    <Property Name="ElementName" Value="[log].[Job].[JobStackTrace]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[log].[Job]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobStacktrace" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="733ff348-f439-4cb0-a714-f1a49e5f9590" ChangeDateTime="07/11/2024 04:59:00">
+    <Property Name="ElementName" Value="[log].[Job].[JobStacktrace]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[log].[Job]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobErrorStacktrace" />
+  </Operation>
+</Operations>

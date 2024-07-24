@@ -1,0 +1,4 @@
+﻿CREATE SCHEMA [aud]
+GO
+CREATE SCHEMA [log]
+GO

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Database.SqlServer</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a6fe7a16-29c5-4ca6-9014-1062ea1cd9e1}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Database.SqlServer</RootNamespace>
+    <AssemblyName>Database.SqlServer</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Scripts" />
+    <Folder Include="StoreProcedures" />
+    <Folder Include="Functions" />
+    <Folder Include="Tables" />
+    <Folder Include="Constraints" />
+    <Folder Include="Views" />
+    <Folder Include="Index" />
+    <Folder Include="Primary Keys" />
+    <Folder Include="Schemas" />
+    <Folder Include="StoreProcedures\Session" />
+    <Folder Include="Index\User" />
+    <Folder Include="Index\Session" />
+    <Folder Include="Tables\Log" />
+    <Folder Include="Primary Keys\Log" />
+    <Folder Include="Tables\aud" />
+    <Folder Include="StoreProcedures\Logs" />
+    <Folder Include="StoreProcedures\Logs\Error" />
+    <Folder Include="StoreProcedures\Logs\Jobs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\Schemas.sql" />
+    <Build Include="Index\User\IDX_User_FullName.sql" />
+    <Build Include="Constraints\FK_RoleClaim.sql" />
+    <Build Include="Constraints\FK_UserClaim.sql" />
+    <Build Include="Constraints\FK_UserRole.sql" />
+    <Build Include="Constraints\FK_SessionUser.sql" />
+    <Build Include="Primary Keys\PK_Role.sql" />
+    <Build Include="Primary Keys\PK_RoleClaim.sql" />
+    <Build Include="Primary Keys\PK_User.sql" />
+    <Build Include="Primary Keys\PK_UserClaim.sql" />
+    <Build Include="Primary Keys\PK_UserRole.sql" />
+    <Build Include="Primary Keys\PK_Session.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="StoreProcedures\Session\PROJ_CREATE_SESSION_SP.sql" />
+    <Build Include="StoreProcedures\Session\PROJ_GET_SESSION_BY_USER_ID_AND_REFRESH_TOKEN_SP.sql" />
+    <Build Include="Index\Session\IDX_Session_UserId_RefreshToken.sql" />
+    <Build Include="Tables\Log\Error.sql" />
+    <Build Include="Primary Keys\Log\PK_Error.sql" />
+    <Build Include="StoreProcedures\Session\PROJ_UPDATE_SESSION_BY_REFRESH_TOKEN_SP.sql" />
+    <Build Include="StoreProcedures\Session\PROJ_UPDATE_SESSION_STATUS_BY_UNEXPIRED_TOKEN_SP.sql" />
+    <Build Include="Tables\aud\Session.sql" />
+    <Build Include="StoreProcedures\Logs\Error\PROJ_CLEAR_ERRORS_SP.sql" />
+    <Build Include="StoreProcedures\Logs\Error\PROJ_CREATE_ERROR_SP.sql" />
+    <Build Include="Tables\Log\Job.sql" />
+    <Build Include="StoreProcedures\Logs\Jobs\PROJ_CREATE_JOB_LOG_SP.sql" />
+    <Build Include="Primary Keys\Log\PK_Job.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database.SqlServer.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\RoleClaim.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\UserClaim.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\UserRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Database.SqlServer.refactorlog" />
+  </ItemGroup>
+</Project>

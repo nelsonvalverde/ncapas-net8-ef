@@ -1,0 +1,71 @@
+﻿/***********************************************************************************
+-> Autor			: N.VALVERDE
+-> Fecha creación	: 23/06/2024  
+-> Descripción		: Insert ERROR
+***********************************************************************************/  
+CREATE PROCEDURE [log].[PROJ_CREATE_ERROR_SP]
+	@ERROR_APP				VARCHAR(50) = NULL,
+	@ERROR_TYPE				VARCHAR(254),
+	@ERROR_MESSAGE			VARCHAR(254),
+	@ERROR_BODY				VARCHAR(MAX),
+	@ERROR_METHOD			VARCHAR(254),
+	@ERROR_PATH				VARCHAR(254),
+	@ERROR_QUERY_STRING		VARCHAR(254),
+	@ERROR_USER_AGENT		VARCHAR(254),
+	@ERROR_STACKTRACE		VARCHAR(MAX),
+	@ERROR_CREATED			DATETIME,
+	@ERROR_CREATED_BY		VARCHAR(254)
+
+	
+AS
+	SET NOCOUNT ON
+
+	DECLARE @ERROR_CODE VARCHAR(50)
+
+	IF EXISTS (	SELECT	1 
+				FROM	[log].[Error] (NOLOCK)
+				WHERE   DATEPART(YEAR, Created)	= DATEPART(YEAR, @ERROR_CREATED)
+				AND		DATEPART(MONTH, Created)	= DATEPART(MONTH, @ERROR_CREATED))
+	BEGIN
+		SELECT		@ERROR_CODE = CONCAT('E-', DATEPART(YEAR, Created),DATEPART(MONTH, Created), '-', COUNT(DATEPART(MONTH, Created)) + 1)
+		FROM		[log].[Error] (NOLOCK)
+		WHERE		DATEPART(YEAR, Created) =  DATEPART(YEAR, @ERROR_CREATED)
+		AND			DATEPART(MONTH, Created) =  DATEPART(MONTH, @ERROR_CREATED)
+		GROUP BY	DATEPART(YEAR, Created), DATEPART(MONTH, Created)
+	
+	END
+	 ELSE
+		SELECT		@ERROR_CODE = CONCAT( 'E-', DATEPART(YEAR, @ERROR_CREATED), DATEPART(MONTH, @ERROR_CREATED), '-1' )
+
+	INSERT INTO [log].[Error]
+	(
+		App,
+		Code,
+		[Type],
+		[Message],
+		[Body],
+		[Method],
+		[Path],
+		QueryString,
+		UserAgent,
+		StackTrace,
+		Created,
+		CreatedBy
+	)
+	VALUES
+	(
+		@ERROR_APP,
+		@ERROR_CODE,
+		@ERROR_TYPE,
+		@ERROR_MESSAGE,
+		@ERROR_BODY,
+		@ERROR_METHOD,
+		@ERROR_PATH,
+		@ERROR_QUERY_STRING,
+		@ERROR_USER_AGENT,
+		@ERROR_STACKTRACE,
+		@ERROR_CREATED,
+		@ERROR_CREATED_BY
+	)
+
+	SELECT @ERROR_CODE
