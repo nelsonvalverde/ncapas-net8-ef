@@ -73,7 +73,7 @@ public sealed class UserRepository(
     public async Task<UserEntity?> AuthUserAsync(string email, CancellationToken cancellationToken = default)
     {
         return await _dbSet.AsNoTracking()
-            .ToMapUsers()
+            .ToMapUsers(ignorePassword: false)
             .FirstOrDefaultAsync(x => x.Email == email, cancellationToken).ConfigureAwait(false);
     }
 

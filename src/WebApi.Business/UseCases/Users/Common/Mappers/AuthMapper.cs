@@ -6,7 +6,8 @@ public static class AuthMapper
 {
     public static UserJwtModel ToUserAuth(this UserJwtModel user)
     {
-        return user with { PasswordHash = null };
+        //TO DO
+        return user;
     }
 
 }

@@ -13,7 +13,6 @@ public static class UserEntityMapper
             FullName: user.FullName,
             LastName: user.LastName,
             PhoneNumber: user.PhoneNumber,
-            PasswordHash: user.PasswordHash,
             Email: user.Email,
             EmailConfirmed: user.EmailConfirmed,
             StatusId: user.StatusId,

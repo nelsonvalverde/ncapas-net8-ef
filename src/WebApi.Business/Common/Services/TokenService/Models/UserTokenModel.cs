@@ -8,7 +8,6 @@ public record UserJwtModel(
     string LastName,
     string FullName,
     string? PhoneNumber,
-    string? PasswordHash,
     string Email,
     bool EmailConfirmed,
     UserStatus StatusId,
